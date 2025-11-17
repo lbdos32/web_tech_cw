@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/navBar.css">
+    <meta charset="UTF-8">
+    <title>EU Blue Tits</title>
+</head>
+<body>
+<div class="navbar">
+    <div onclick="window.location.href='/'">
+        <img src="{{ url_for('static', filename='blueTitsBird.jpg') }}" class="logo">
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/healthAndSafety">Health and Safety</a></li>
+        <li><a href="/committee">Committee</a></li>
+    </ul>
+</div>
+<p>This is my blue tits website</p>
+</body>
+</html>

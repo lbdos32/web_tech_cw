@@ -1,0 +1,39 @@
+.navbar {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+    color: white;
+    font-family: Comic Sans MS;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color;
+}
+
+.nav-links li a:hover {
+    color: #ffd700;
+}
