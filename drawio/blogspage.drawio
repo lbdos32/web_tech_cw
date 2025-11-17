@@ -1,0 +1,112 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.7">
+  <diagram name="Page-1" id="-jNEYkx079_U1RZmr9Rg">
+    <mxGraphModel dx="1351" dy="871" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-14" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="740" y="300" width="610" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-15" value="Blue Tits Logo" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="310" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="380" width="590" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-17" value="Homepage" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-18" value="Health and Safety" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="860" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-19" value="Announcements" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-20" value="Blogs" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-21" value="Meet the Committee" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-22" value="&lt;b&gt;Footer&lt;/b&gt; to contain contact information such as Instagram/Whatsapp/Email" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="740" y="880" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kNEOZ8KUIJi0NqQj_HjM-1" value="Blog 1" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="450" width="300" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-1" value="Button to post blog" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="450" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-2" value="Blog 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="500" width="270" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-3" value="Blog 3" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="640" width="300" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="300" width="610" height="660" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-5" value="Blue Tits Logo" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="310" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="380" width="590" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-7" value="Homepage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-8" value="Health and Safety" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-9" value="Announcements" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-10" value="Blogs" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1880" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-11" value="Meet the Committee" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-12" value="&lt;b&gt;Footer&lt;/b&gt; to contain contact information such as Instagram/Whatsapp/Email" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="900" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-17" value="Picture from blog 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="490" width="290" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-18" value="Text for blog 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="490" width="290" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-19" value="Blog 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="450" width="580" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-26" value="Picture from blog 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="690" width="290" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-27" value="Text for blog 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="690" width="290" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-28" value="Blog 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="650" width="580" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-29" value="Post own blog button" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="850" width="580" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-30" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="390" width="320" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-31" value="Create your own blog popup" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="390" width="320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-32" value="Enter Title here" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="440" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-33" value="Add text and photos here" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="480" width="320" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="AwFUDnAa2Y8fJ_GHSB7p-34" value="Post" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="650" width="320" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

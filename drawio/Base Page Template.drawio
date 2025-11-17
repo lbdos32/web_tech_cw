@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.7">
+  <diagram name="Page-1" id="-jNEYkx079_U1RZmr9Rg">
+    <mxGraphModel dx="1183" dy="763" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-14" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="740" y="300" width="610" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-15" value="Blue Tits Logo" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="310" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-16" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="380" width="590" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-17" value="Homepage" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-18" value="Health and Safety" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="860" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-19" value="Announcements" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-20" value="Blogs" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-21" value="Meet the Committee" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-22" value="&lt;b&gt;Footer&lt;/b&gt; to contain contact information such as Instagram/Whatsapp/Email" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="740" y="880" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7-BQNdwCkHUmhDZu_Rm-28" value="Title of Page" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="895" y="450" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kNEOZ8KUIJi0NqQj_HjM-1" value="Page Content Here" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="490" width="590" height="380" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
