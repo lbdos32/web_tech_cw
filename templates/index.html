@@ -1,21 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <link rel="stylesheet" href="static/navBar.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU Blue Tits</title>
 </head>
 <body>
+
 <div class="navbar">
     <div onclick="window.location.href='/'">
-        <img src="{{ url_for('static', filename='bluetitslogo1.png') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/bluetitslogo1.png') }}" class="logo">
     </div>
     <ul class="nav-links">
         <li><a href="/healthAndSafety">Health and Safety</a></li>
         <li><a href="/committee">Committee</a></li>
     </ul>
 </div>
-<p>This is my blue tits website</p>
-<p><a href ="https://www.eusa.ed.ac.uk/activities/view/BlueTits">Buy a membership here</a></p>
+
+<div class="page-content">
+    <p>This is my blue tits website</p>
+    <section class="introduction">
+        <h2>About EU Blue Tits</h2>
+        <p>
+            This society is a fun and fresh way to meet new people, whilst getting outdoors and enjoying the Scottish nature. It is also accessible, affordable and beneficial for your health, body and soul.<br>
+            During the semesters, we will be embarking on trips to beaches, lochs and rivers all over Scotland every Sunday at 11am!<br>
+            So get your swimmers ready and goggles on and dive into the waters of Blue Tits!<br>
+            <a href ="https://www.eusa.ed.ac.uk/activities/view/BlueTits">Get your membership here!</a><br>
+            Love, Blue Tits x
+        </p>
+    </section>
+</div>
+
+
+
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>&copy; 2025 The Bluetits</p>
+        <ul class="social-links">
+            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>

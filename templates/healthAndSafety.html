@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="static/navBar.css">
     <meta charset="UTF-8">
     <title>Health and Safety</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/healthAndSafety.css') }}">
 </head>
 <body>
 <div class="navbar">
     <div onclick="window.location.href='/'">
-        <img src="{{ url_for('static', filename='bluetitslogo1.png') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/bluetitslogo1.png') }}" class="logo">
     </div>    <ul class="nav-links">
         <li><a href="/healthAndSafety">Health and Safety</a></li>
         <li><a href="/committee">Committee</a></li>
     </ul>
 </div>
-<p>This is the health and safety page</p>
+<section class="health-safety">
+    <h2>Health & Safety – Cold Water Swimming</h2>
+    <ul>
+        <li>Always swim with a buddy</li>
+        <li>Keep an eye out for hazards under the water</li>
+        <li>Acclimatise slowly</li>
+        <li>Know your limits and stick to it</li>
+        <li>Get into dry clothes quickly (warm layers are really important)</li>
+        <li>Have lots of tea/coffee and biscuits after!</li>
+    </ul>
+</section>
+<section class="health-safety">
+    <h2>Links to useful resources</h2>
+    <ul>
+        <li><a href="https://datahq.sas.org.uk/sewage-data-hq/is-it-safe-to-swim/">Surfers against sewage</a> </li>
+    </ul>
+</section>
+<section class="health-safety">
+    <h2>Hypothermia Guidance</h2>
+    <h3>Signs of hypothermia</h3>
+    <ul>
+        <li>Shivering</li>
+        <li>Pale, cold skin</li>
+        <li>Blue lips</li>
+        <li>Slow Breathing</li>
+        <li>Slurred Speach</li>
+        <li>Clumsiness/loss of coordination</li>
+        <li>Tiredness or confusion</li>
+    </ul>
+    <h3>What to do if someone is hypothermic</h3>
+    <ul>
+        <li>Let a committee member know</li>
+        <li>Remove any wet clothing and wrap them in dry warm clothes</li>
+        <li>Keep them as dry and warm as possible</li>
+        <li>Cover their head. Use a hat/scarf/blanket/dry towel</li>
+        <li>Keep them awake and talking</li>
+        <li>If possible, move indoors or to shelter</li>
+        <li>Give them a warm drink and something sugary</li>
+        <li><strong>DO NOT:</strong> Rub their hands/arms/feet/legs</li>
+        <li><strong>DO NOT:</strong> Use hot water/handwarmers to warm them up</li>
+
+    </ul>
+</section>
 </body>
 </html>
