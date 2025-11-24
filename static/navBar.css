@@ -1,21 +1,19 @@
 .navbar {
     background-color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    padding: 20px 40px;
-    width: 40%;
-    box-sizing: border-box;
-    margin-bottom: 40px;
-    color: white;
+    padding-left: 20px;
+    border-color: black;
+    margin-bottom: 50px;
     font-family: Calibri;
-    position: relative;
-    z-index: 10;
 }
 
+
 .logo {
-    width: 125px;
-    height: 150px;
+    width: 140px;
+    height: 108px;
+    margin-right: 20px;
 }
 
 .nav-links {
@@ -35,5 +33,5 @@
 }
 
 .nav-links li a:hover {
-    color: #ffd700;
+    color: #30799B;
 }
