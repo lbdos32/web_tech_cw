@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
@@ -20,7 +20,7 @@
         <li><a href="/committee">Committee</a></li>
     </ul>
 </div>
-
+<main>
 <div class="page-content">
     <p>This is my blue tits website</p>
     <section class="introduction">
@@ -34,19 +34,11 @@
         </p>
     </section>
 </div>
+</main>
+
+{% include 'footer.html' %}
 
 
 
-
-<footer class="site-footer">
-    <div class="footer-content">
-        <p>&copy; 2025 The Bluetits</p>
-        <ul class="social-links">
-            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-            <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-        </ul>
-    </div>
-</footer>
 </body>
 </html>

@@ -3,9 +3,13 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/committee.css') }}">
+
     <meta charset="UTF-8">
     <title>Meet the Committee</title>
 </head>
+<body>
+
 <div class="navbar">
     <div onclick="window.location.href='/'">
         <img src="{{ url_for('static', filename='images/bluetitslogo1.png') }}" class="logo">
@@ -14,18 +18,10 @@
         <li><a href="/committee">Committee</a></li>
     </ul>
 </div>
-<body>
+<main>
 <p>Meet the Committee web page!</p>
 <p><img src="static/SianSylvieAmber.jpg" alt="SianSylvieAmber"></p>
-<footer class="site-footer">
-    <div class="footer-content">
-        <p>&copy; 2025 The Bluetits</p>
-        <ul class="social-links">
-            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-            <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-        </ul>
-    </div>
-</footer>
+</main>
+{% include 'footer.html' %}
 </body>
 </html>
