@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
@@ -13,3 +14,4 @@ def health_and_safety():
 @app.route("/committee")
 def committee():
     return render_template('committee.html')
+
