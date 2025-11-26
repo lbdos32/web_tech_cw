@@ -15,3 +15,29 @@ body {
     align-items: center;
 }
 
+#latest-instagram-post {
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center if needed */
+    flex-direction: column;  /* stack image/video and caption */
+    margin: 40px auto;       /* spacing around the post */
+    max-width: 800px;        /* limit max width */
+    width: 90%;              /* responsive width */
+}
+
+#latest-instagram-post img,
+#latest-instagram-post video {
+    width: 100%;             /* fill container width */
+    height: auto;            /* maintain aspect ratio */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* subtle shadow for emphasis */
+    margin-bottom: 15px;
+}
+
+#latest-instagram-post p {
+    font-size: 16px;
+    color: #333;
+    text-align: center;      /* center caption */
+    margin-bottom: 0;
+}
+
