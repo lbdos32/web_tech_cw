@@ -12,7 +12,38 @@
 {% include 'navbar.html' %}
 <main>
 <p>Meet the Committee web page!</p>
-<p><img src="static/SianSylvieAmber.jpg" alt="SianSylvieAmber"></p>
+
+    <h2>Add Committee Member</h2>
+    <form action="{{ url_for('add_committee_member') }}" method="POST" enctype="multipart/form-data">
+        <label for="role">Role:</label><br>
+        <input type="text" id="role" name="role" required><br><br>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="info">Information:</label><br>
+        <textarea id="info" name="info" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="photo">Upload Image:</label><br>
+        <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+        <button type="submit">Add Member</button>
+    </form>
+
+    <h2>Committee Members</h2>
+    <div id="committee-members">
+        {% for member in committee %}
+        <div class="member">
+            {% if member.photo %}
+            <img src="{{ url_for('static', filename='committee/' + member.photo) }}" alt="{{ member.name }}" width="200">
+            {% endif %}
+            <h3>{{ member.role }} - {{ member.name }}</h3>
+            <p>{{ member.info }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+
 </main>
 {% include 'footer.html' %}
 </body>

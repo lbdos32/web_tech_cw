@@ -1,6 +1,8 @@
-from flask import Flask, render_template, url_for, jsonify
+from flask import Flask, render_template, url_for, jsonify, request, redirect
 from flask_caching import Cache
 import requests
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -31,7 +33,38 @@ def latest_instagram():
 def health_and_safety():
     return render_template('healthAndSafety.html')
 
-@app.route("/committee")
-def committee():
-    return render_template('committee.html')
 
+UPLOAD_FOLDER = 'static/committee'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Make sure folder exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Temporary storage of committee members
+committee_members = []
+
+@app.route("/committee", methods=['GET'])
+def committee():
+    return render_template("committee.html", committee=committee_members)
+
+@app.route("/committee/add", methods=['POST'])
+def add_committee_member():
+    role = request.form['role']
+    name = request.form['name']
+    info = request.form['info']
+    photo_file = request.files.get('photo')
+    filename = None
+
+    if photo_file and photo_file.filename != '':
+        filename = secure_filename(photo_file.filename)
+        photo_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    member = {
+        'role': role,
+        'name': name,
+        'info': info,
+        'photo': filename
+    }
+    committee_members.append(member)
+
+    return redirect(url_for('committee'))
