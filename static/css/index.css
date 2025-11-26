@@ -59,10 +59,10 @@ body {
 }
 
 .instagram-caption{
-    background-color: white;
+    background-color: #f0f8ff;
     border-radius: 10px;
     padding: 20px 30px;
-    max-width: 75%;
+    max-width: 800px;
     font-family: poppins, sans-serif;
     font-size: 80%;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
