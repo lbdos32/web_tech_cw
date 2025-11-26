@@ -8,6 +8,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EU Blue Tits</title>
+    <style>
+        #latest-instagram-post img, #latest-instagram-post video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        #latest-instagram-post p {
+            font-size: 14px;
+            color: #333;
+            margin: 0 0 20px 0;
+        }
+        .carousel a {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -33,6 +51,51 @@
             Love, Blue Tits x
         </p>
     </section>
+
+    <h1>Latest Instagram Post</h1>
+    <section>
+        <div id="latest-instagram-post"></div>
+    </section>
+    <script>
+        async function loadLatestInstagramPost() {
+            try {
+                const res = await fetch('/latest-instagram');
+                const latest = await res.json();
+
+                const container = document.getElementById('latest-instagram-post');
+                let html = '';
+
+                if(latest.mediaType === "CAROUSEL_ALBUM" && latest.children && latest.children.length > 0) {
+                    // Show only the first slide
+                    const firstChild = latest.children[0];
+                    html += `<a href="${latest.permalink}" target="_blank">
+                            <img src="${firstChild.mediaUrl}" alt="${latest.caption}" loading="lazy">
+                         </a>`;
+                } else if(latest.mediaType === "VIDEO") {
+                    html += `<a href="${latest.permalink}" target="_blank">
+                            <video controls width="400" poster="${latest.mediaUrl}">
+                                <source src="${latest.mediaUrl}" type="video/mp4">
+                            </video>
+                         </a>`;
+                } else {
+                    html += `<a href="${latest.permalink}" target="_blank">
+                            <img src="${latest.mediaUrl}" alt="${latest.caption}" loading="lazy">
+                         </a>`;
+                }
+
+                if(latest.caption) html += `<p>${latest.caption}</p>`;
+
+                container.innerHTML = html;
+            } catch (err) {
+                console.error("Error loading Instagram post:", err);
+                document.getElementById('latest-instagram-post').innerText = "Failed to load Instagram post.";
+            }
+        }
+
+        // Load on page load
+        loadLatestInstagramPost();
+    </script>
+
 </div>
 </main>
 
