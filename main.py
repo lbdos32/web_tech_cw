@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 
 app.config['CACHE_TYPE'] = 'SimpleCache'  # for production, use Redis or Memcached
-app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # cache duration in seconds (5 minutes)
+app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # (5 minutes)
 
 cache = Cache(app)
 BEHOLD_JSON_URL = 'https://feeds.behold.so/NMQlaZ9tJIAuwjIG7RIv'

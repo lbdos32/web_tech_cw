@@ -22,16 +22,14 @@
 </div>
 <main>
 <div class="page-content">
-    <p>This is my blue tits website</p>
     <section class="introduction">
-        <h2>About EU Blue Tits</h2>
-        <p>
-            This society is a fun and fresh way to meet new people, whilst getting outdoors and enjoying the Scottish nature. It is also accessible, affordable and beneficial for your health, body and soul.<br>
-            During the semesters, we will be embarking on trips to beaches, lochs and rivers all over Scotland every Sunday at 11am!<br>
-            So get your swimmers ready and goggles on and dive into the waters of Blue Tits!<br>
-            <a href ="https://www.eusa.ed.ac.uk/activities/view/BlueTits">Get your membership here!</a><br>
-            Love, Blue Tits x
-        </p>
+            <h2>About EU Blue Tits</h2>
+            <p>
+                This society is a fun and fresh way to meet new people, whilst getting outdoors and enjoying the Scottish nature. It is also accessible, affordable and beneficial for your health, body and soul.<br>
+                During the semesters, we will be embarking on trips to beaches, lochs and rivers every Sunday at 11am!<br>
+                So get your swimmers ready and goggles on and dive into the waters of Blue Tits!<br>
+                Love, Blue Tits x
+            </p>
     </section>
 
     <h1>Latest Instagram Post</h1>
@@ -65,7 +63,7 @@
                          </a>`;
                 }
 
-                if(latest.caption) html += `<p>${latest.caption}</p>`;
+                if(latest.caption) html += `<p class="instagram-caption">${latest.caption}</p>`;
 
                 container.innerHTML = html;
             } catch (err) {
