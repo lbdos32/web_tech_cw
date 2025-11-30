@@ -34,7 +34,7 @@ with app.app_context():
 app.config['CACHE_TYPE'] = 'SimpleCache'  # for production, use Redis or Memcached
 app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # (5 minutes)
 cache = Cache(app)
-BEHOLD_JSON_URL = 'https://feeds.behold.so/NMQlaZ9tJIAuwjIG7RIv'
+BEHOLD_JSON_URL = 'https://feeds.behold.so/TkjBFP6CRMaCLOTV0n93'
 
 app.secret_key = 'mysecretkey'  # needed for sessions
 
@@ -65,7 +65,6 @@ def root():
     return render_template('index.html')
 
 @app.route('/latest-instagram')
-@cache.cached()  # this caches the route automatically
 def latest_instagram():
     try:
         res = requests.get(BEHOLD_JSON_URL)
@@ -76,6 +75,11 @@ def latest_instagram():
     except Exception as e:
         print("Error fetching Behold JSON:", e)
         return jsonify({'error': 'Failed to fetch Instagram post'}), 500
+
+
+
+
+
 
 @app.route("/healthAndSafety")
 def health_and_safety():
