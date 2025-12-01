@@ -33,19 +33,32 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 .insta-post {
+    display: flex;
+    flex-direction: column; /* stack image on top, caption at bottom */
     width: 450px;
+    justify-content: center;
     border-radius: 8px;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    margin: 40px auto; /* centers the whole block */
 }
+
 .insta-post img {
     width: 100%;
     display: block;
+    flex-grow: 1; /* image takes available space */
 }
+
 .caption {
-    padding: 10px;
-    background: #fafafa;
-    font-size: 14px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    max-width: 800px;
+    font-family: poppins, sans-serif;
+    font-size: 80%;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1)
 }
+
 
 

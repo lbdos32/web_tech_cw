@@ -1,18 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Latest Instagram Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU Blue Tits</title>
 </head>
 <body>
+{% include 'navbar.html' %}
+<main>
+    <div class="page-content">
+        <section class="introduction">
+            <h2>About EU Blue Tits</h2>
+            <p>
+                This society is a fun and fresh way to meet new people, whilst getting outdoors and enjoying the Scottish nature. It is also accessible, affordable and beneficial for your health, body and soul.<br>
+                During the semesters, we will be embarking on trips to beaches, lochs and rivers every Sunday at 11am!<br>
+                So get your swimmers ready and goggles on and dive into the waters of Blue Tits!<br>
+                Love, Blue Tits x
+            </p>
+        </section>
 
-{% if post %}
-<div class="insta-post">
-    <img src="{{ post.image_url }}" alt="Latest Instagram post">
-    <div class="caption">{{ post.caption }}</div>
-</div>
-{% else %}
-<p>No posts found.</p>
-{% endif %}
+        <h1>Latest Instagram Post</h1>
+        <section>
+            <div id="latest-instagram-post"></div>
+        </section>
+        {% if post %}
+        <div class="insta-post">
+            <img src="{{ post.image_url }}" alt="Latest Instagram post">
+            <div class="caption">{{ post.caption }}</div>
+        </div>
+        {% else %}
+        <p>No posts found.</p>
+        {% endif %}
+
+    </div>
+</main>
+
+{% include 'footer.html' %}
+
+
 
 </body>
 </html>
