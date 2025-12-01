@@ -4,15 +4,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/committee.css') }}">
-
     <meta charset="UTF-8">
     <title>Meet the Committee</title>
 </head>
 <body>
 {% include 'navbar.html' %}
 <main>
-<p>Meet the Committee web page!</p>
+    <p>Meet the Committee web page!</p>
 
+    {% if session.get('admin_logged_in') %}
     <h2>Add Committee Member</h2>
     <form action="{{ url_for('add_committee_member') }}" method="POST" enctype="multipart/form-data">
         <label for="role">Role:</label><br>
@@ -29,6 +29,7 @@
 
         <button type="submit">Add Member</button>
     </form>
+    {% endif %}
 
     <h2>Committee Members</h2>
     <div id="committee-members">
@@ -39,11 +40,16 @@
             {% endif %}
             <h3>{{ member.role }} - {{ member.name }}</h3>
             <p>{{ member.info }}</p>
+
+            {% if session.get('admin_logged_in') %}
+            <!-- Admin-only delete button -->
+            <form action="{{ url_for('delete_committee_member', member_id=member.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
-
-
 </main>
 {% include 'footer.html' %}
 </body>
