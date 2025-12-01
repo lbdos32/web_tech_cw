@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, jsonify, request, redirect, s
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 import requests
+import time
 import os
 from werkzeug.utils import secure_filename
 
@@ -30,12 +31,6 @@ class CommitteeMember(db.Model):
 with app.app_context():
     db.create_all()
 
-
-app.config['CACHE_TYPE'] = 'SimpleCache'  # for production, use Redis or Memcached
-app.config['CACHE_DEFAULT_TIMEOUT'] = 300  # (5 minutes)
-cache = Cache(app)
-BEHOLD_JSON_URL = 'https://feeds.behold.so/TkjBFP6CRMaCLOTV0n93'
-
 app.secret_key = 'mysecretkey'  # needed for sessions
 
 # --- Admin credentials (hardcoded for now) ---
@@ -61,25 +56,9 @@ def logout():
     return redirect(url_for('root'))
 
 @app.route("/")
-def root():
-    return render_template('index.html')
-
-@app.route('/latest-instagram')
-def latest_instagram():
-    try:
-        res = requests.get(BEHOLD_JSON_URL)
-        res.raise_for_status()
-        data = res.json()
-        latest_post = data['posts'][0]
-        return jsonify(latest_post)
-    except Exception as e:
-        print("Error fetching Behold JSON:", e)
-        return jsonify({'error': 'Failed to fetch Instagram post'}), 500
-
-
-
-
-
+def index():
+    post = fetch_latest_instagram_post()
+    return render_template("index.html", post=post)
 
 @app.route("/healthAndSafety")
 def health_and_safety():
@@ -137,3 +116,45 @@ def delete_committee_member(member_id):
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('committee'))
+
+# Instagram posting
+
+INSTAGRAM_ACCESS_TOKEN = "IGAAP89WJOTqFBZAFIxMWRDRlVfRUkycVA5VWYyV1lZAV2YxNVZA4VG5QbF9VWEpwNjZAkUFlNckVKeHlXNi1jdFZA2ZAUQ3enp3NGx4djlHb3NpT0JQa044UlZABQl9GTXY5TzNEZA3VzSlhWRllCeHFnZAGNmY2NwR2pKTGJza0tRSk96YwZDZD"
+REFRESH_INTERVAL = 300  # seconds (5 minutes) — change as needed
+
+cached_post = None
+last_fetch_time = 0
+
+
+def fetch_latest_instagram_post():
+    global cached_post, last_fetch_time
+
+    now = time.time()
+    if cached_post and (now - last_fetch_time < REFRESH_INTERVAL):
+        return cached_post  # return cached data
+
+    url = (
+        "https://graph.instagram.com/me/media"
+        "?fields=id,media_url,caption,timestamp"
+        f"&access_token={INSTAGRAM_ACCESS_TOKEN}"
+    )
+
+    response = requests.get(url)
+    data = response.json()
+
+    if "data" not in data or len(data["data"]) == 0:
+        return None
+
+    latest = data["data"][0]  # newest post
+
+    cached_post = {
+        "image_url": latest.get("media_url"),
+        "caption": latest.get("caption", ""),
+        "timestamp": latest.get("timestamp")
+    }
+    last_fetch_time = now
+
+    return cached_post
+
+
+

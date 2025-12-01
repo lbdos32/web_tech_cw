@@ -1,78 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EU Blue Tits</title>
+    <title>Latest Instagram Post</title>
 </head>
 <body>
-{% include 'navbar.html' %}
-<main>
-<div class="page-content">
-    <section class="introduction">
-            <h2>About EU Blue Tits</h2>
-            <p>
-                This society is a fun and fresh way to meet new people, whilst getting outdoors and enjoying the Scottish nature. It is also accessible, affordable and beneficial for your health, body and soul.<br>
-                During the semesters, we will be embarking on trips to beaches, lochs and rivers every Sunday at 11am!<br>
-                So get your swimmers ready and goggles on and dive into the waters of Blue Tits!<br>
-                Love, Blue Tits x
-            </p>
-    </section>
 
-    <h1>Latest Instagram Post</h1>
-    <section>
-        <div id="latest-instagram-post"></div>
-    </section>
-    <script>
-        async function loadLatestInstagramPost() {
-            try {
-                const res = await fetch('/latest-instagram');
-                const latest = await res.json();
-
-                const container = document.getElementById('latest-instagram-post');
-                let html = '';
-
-                if(latest.mediaType === "CAROUSEL_ALBUM" && latest.children && latest.children.length > 0) {
-                    // Show only the first slide
-                    const firstChild = latest.children[0];
-                    html += `<a href="${latest.permalink}" target="_blank">
-                            <img src="${firstChild.mediaUrl}" alt="${latest.caption}" loading="lazy">
-                         </a>`;
-                } else if(latest.mediaType === "VIDEO") {
-                    html += `<a href="${latest.permalink}" target="_blank">
-                            <video controls width="400" poster="${latest.mediaUrl}">
-                                <source src="${latest.mediaUrl}" type="video/mp4">
-                            </video>
-                         </a>`;
-                } else {
-                    html += `<a href="${latest.permalink}" target="_blank">
-                            <img src="${latest.mediaUrl}" alt="${latest.caption}" loading="lazy">
-                         </a>`;
-                }
-
-                if(latest.caption) html += `<p class="instagram-caption">${latest.caption}</p>`;
-
-                container.innerHTML = html;
-            } catch (err) {
-                console.error("Error loading Instagram post:", err);
-                document.getElementById('latest-instagram-post').innerText = "Failed to load Instagram post.";
-            }
-        }
-
-        // Load on page load
-        loadLatestInstagramPost();
-    </script>
-
+{% if post %}
+<div class="insta-post">
+    <img src="{{ post.image_url }}" alt="Latest Instagram post">
+    <div class="caption">{{ post.caption }}</div>
 </div>
-</main>
-
-{% include 'footer.html' %}
-
-
+{% else %}
+<p>No posts found.</p>
+{% endif %}
 
 </body>
 </html>
