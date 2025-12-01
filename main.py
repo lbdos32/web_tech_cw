@@ -31,9 +31,8 @@ class CommitteeMember(db.Model):
 with app.app_context():
     db.create_all()
 
-app.secret_key = 'mysecretkey'  # needed for sessions
+app.secret_key = 'mysecretkey'
 
-# --- Admin credentials (hardcoded for now) ---
 ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = 'password123'
 
