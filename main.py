@@ -88,7 +88,10 @@ def delete_committee_member(member_id):
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('committee'))
+@app.route("/announcements")
+def announcements():
 
+    return render_template("announcements.html")
 # Instagram posting
 
 INSTAGRAM_ACCESS_TOKEN = "IGAAP89WJOTqFBZAFRxaGFKa2d2aWZAMQUxkYVNVRE11ajdhV3N6UEtza1dmM21xd01iUndCRUg2ZAWxkUHVBQXVndF9BczUtWldjSnJaVGZAJaEkyVW15cTZALaldaSjI1RGtMX1BIMmdrZAGhNU1RWUmNFMkZAid0Q3M0NHU2cyZAWotdwZDZD"
