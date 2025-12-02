@@ -14,7 +14,27 @@ body {
 
 }
 
+
 .page-content {
     flex: 1;
 }
+.page-content h2 {
+    text-align: center;
+}
 
+
+.committee-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; /* spacing between embeds */
+}
+
+.committee-embed {
+    max-width: 570px;          /* limits the width */
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+}

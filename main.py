@@ -15,17 +15,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-UPLOAD_FOLDER = 'static/committee'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Database model
 class CommitteeMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    role = db.Column(db.String(100), nullable=False)
-    name = db.Column(db.String(100), nullable=False)
-    info = db.Column(db.Text, nullable=False)
-    photo = db.Column(db.String(200), nullable=True)
+    embed = db.Column(db.String(1024), nullable=False)
+
 
 # Create the database tables
 with app.app_context():
@@ -52,7 +47,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('admin_logged_in', None)
-    return redirect(url_for('root'))
+    return redirect(url_for("index"))
 
 @app.route("/")
 def index():
@@ -64,15 +59,6 @@ def health_and_safety():
     return render_template('healthAndSafety.html')
 
 
-UPLOAD_FOLDER = 'static/committee'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Make sure folder exists
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-# Temporary storage of committee members
-committee_members = []
-
 @app.route("/committee")
 def committee():
     members = CommitteeMember.query.all()
@@ -83,17 +69,10 @@ def add_committee_member():
     if not session.get('admin_logged_in'):
         return "Unauthorized", 403
 
-    role = request.form['role']
-    name = request.form['name']
-    info = request.form['info']
-    photo_file = request.files.get('photo')
+    embed = request.form['embed']
     filename = None
 
-    if photo_file and photo_file.filename != '':
-        filename = secure_filename(photo_file.filename)
-        photo_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-    member = CommitteeMember(role=role, name=name, info=info, photo=filename)
+    member = CommitteeMember(embed=embed)
     db.session.add(member)
     db.session.commit()
 
@@ -106,12 +85,6 @@ def delete_committee_member(member_id):
 
     member = CommitteeMember.query.get_or_404(member_id)
 
-    # Delete the photo from disk if exists
-    if member.photo:
-        photo_path = os.path.join(app.config['UPLOAD_FOLDER'], member.photo)
-        if os.path.exists(photo_path):
-            os.remove(photo_path)
-
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('committee'))
@@ -119,7 +92,7 @@ def delete_committee_member(member_id):
 # Instagram posting
 
 INSTAGRAM_ACCESS_TOKEN = "IGAAP89WJOTqFBZAFRxaGFKa2d2aWZAMQUxkYVNVRE11ajdhV3N6UEtza1dmM21xd01iUndCRUg2ZAWxkUHVBQXVndF9BczUtWldjSnJaVGZAJaEkyVW15cTZALaldaSjI1RGtMX1BIMmdrZAGhNU1RWUmNFMkZAid0Q3M0NHU2cyZAWotdwZDZD"
-REFRESH_INTERVAL = 5  # seconds
+REFRESH_INTERVAL = 500  # seconds
 
 cached_post = None
 last_fetch_time = 0
