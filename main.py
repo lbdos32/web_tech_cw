@@ -14,16 +14,22 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
+UPLOAD_FOLDER = 'static/announcements'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Database model
+class Announcement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    photo = db.Column(db.String(200), nullable=True)
+
+
 # Database model
 class CommitteeMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     embed = db.Column(db.String(1024), nullable=False)
-
-class Announcement(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    image_path = db.Column(db.String(255), nullable=False)
 
 # Create the database tables
 with app.app_context():
