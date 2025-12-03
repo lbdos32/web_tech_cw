@@ -19,6 +19,11 @@ class CommitteeMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     embed = db.Column(db.String(1024), nullable=False)
 
+class Announcement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    image_path = db.Column(db.String(255), nullable=False)
 
 # Create the database tables
 with app.app_context():
@@ -86,10 +91,37 @@ def delete_committee_member(member_id):
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('committee'))
+
+
 @app.route("/announcements")
 def announcements():
+    announce = Announcement.query.all()
 
-    return render_template("announcements.html")
+    return render_template("announcements.html", announcements=announce)
+
+@app.route("/announcements/add", methods=['POST'])
+def add_committee_member():
+    if not session.get('admin_logged_in'):
+        return "Unauthorized", 403
+
+    id = request.form['id']
+    title = request.form['title']
+    description = request.form['description']
+    image = request.form['image']
+    filename = None
+
+    announce = Announcement(embed=embed)
+    db.session.add(announce)
+    db.session.commit()
+
+    return redirect(url_for('announcements'))
+
+
+
+
+
+
+
 # Instagram posting
 
 INSTAGRAM_ACCESS_TOKEN = "IGAAP89WJOTqFBZAFRxaGFKa2d2aWZAMQUxkYVNVRE11ajdhV3N6UEtza1dmM21xd01iUndCRUg2ZAWxkUHVBQXVndF9BczUtWldjSnJaVGZAJaEkyVW15cTZALaldaSjI1RGtMX1BIMmdrZAGhNU1RWUmNFMkZAid0Q3M0NHU2cyZAWotdwZDZD"

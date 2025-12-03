@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/announcements.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
 
     <meta charset="UTF-8">
@@ -11,7 +11,39 @@
 </head>
 <body>
 {% include 'navbar.html' %}
-<p>This is the announcements page</p>
+<main>
+    <p>This is the announcements page!</p>
+    <div class="page-content">
+        {% if session.get('admin_logged_in') %}
+        <h2>Add Announcement Member</h2>
 
+        <form action="{{ url_for('add_announcement_member') }}" method="POST">
+            <label for="embed">Instagram Embed HTML:</label><br>
+            <textarea id="embed" name="embed" rows="10" cols="70" required></textarea><br><br>
+            <button type="submit">Add Member</button>
+        </form>
+        {% endif %}
+
+        <h2>Committee Members</h2>
+        <div id="committee-members">
+            {% for member in committee %}
+            <div class="member">
+                {% if member.embed %}
+                <div class="committee-embed">
+                    {{ member.embed | safe }}
+                </div>
+                {% endif %}
+
+                {% if session.get('admin_logged_in') %}
+                <form action="{{ url_for('delete_committee_member', member_id=member.id) }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% include 'footer.html' %}
 </body>
 </html>
