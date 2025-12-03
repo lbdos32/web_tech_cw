@@ -87,6 +87,7 @@ def add_committee_member():
 
     return redirect(url_for('committee'))
 
+
 @app.route("/committee/delete/<int:member_id>", methods=['POST'])
 def delete_committee_member(member_id):
     if not session.get('admin_logged_in'):
@@ -105,22 +106,32 @@ def announcements():
 
     return render_template("announcements.html", announcements=announce)
 
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Temporary storage of committee members
+announcements = []
+
 @app.route("/announcements/add", methods=['POST'])
 def add_committee_member():
     if not session.get('admin_logged_in'):
         return "Unauthorized", 403
 
-    id = request.form['id']
     title = request.form['title']
     description = request.form['description']
-    image = request.form['image']
+    photo_file = request.files.get('photo')
     filename = None
 
-    announce = Announcement(embed=embed)
+    if photo_file and photo_file.filename != '':
+        filename = secure_filename(photo_file.filename)
+        photo_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    announce = announcements(role=role, name=name, info=info, photo=filename)
     db.session.add(announce)
     db.session.commit()
 
-    return redirect(url_for('announcements'))
+    return redirect(url_for('committee'))
+
+
 
 
 
