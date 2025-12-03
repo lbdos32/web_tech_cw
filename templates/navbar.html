@@ -2,17 +2,19 @@
     <div onclick="window.location.href='/'">
         <img src="{{ url_for('static', filename='images/bluetitslogo1.png') }}" class="logo">
     </div>
+
     <ul class="nav-links">
         <li><a href="/healthAndSafety">Health and Safety</a></li>
         <li><a href="/committee">Committee</a></li>
         <li><a href="https://www.eusa.ed.ac.uk/activities/view/BlueTits">Memberships</a></li>
-        <li><a href="/announcements">Login</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="/announcements">Announcements</a></li>
+    </ul>
+
+    <ul class="log-in-out">
         {% if session.get('admin_logged_in') %}
         <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login">Login</a></li>
         {% endif %}
-
-
-
     </ul>
 </div>

@@ -9,10 +9,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 
-# SQLite database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///committee.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
 
 

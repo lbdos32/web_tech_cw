@@ -34,3 +34,25 @@
 .nav-links li a:hover {
     color: #30799B;
 }
+.log-in-out {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 20px;
+
+}
+.log-in-out li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color;
+}
+
+.log-in-out li a:hover {
+    color: #30799B;
+}
+
