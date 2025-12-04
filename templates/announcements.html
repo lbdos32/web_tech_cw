@@ -15,33 +15,41 @@
     <p>This is the announcements page!</p>
     <div class="page-content">
         {% if session.get('admin_logged_in') %}
-        <h2>Add Announcement Member</h2>
+        <h2>Add Announcement</h2>
+        <form action="{{ url_for('add_announcements') }}" method="POST" enctype="multipart/form-data">
+            <label for="title">title :</label><br>
+            <input type="text" id="title" name="title" required><br><br>
 
-        <form action="{{ url_for('add_announcement_member') }}" method="POST">
-            <label for="embed">Instagram Embed HTML:</label><br>
-            <textarea id="embed" name="embed" rows="10" cols="70" required></textarea><br><br>
-            <button type="submit">Add Member</button>
+            <label for="description">description:</label><br>
+            <input type="text" id="description" name="description" required><br><br>
+
+            <label for="photo">Upload Image:</label><br>
+            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+            <button type="submit">Post Announcement</button>
         </form>
         {% endif %}
-
-        <h2>Committee Members</h2>
-        <div id="committee-members">
-            {% for member in committee %}
-            <div class="member">
-                {% if member.embed %}
-                <div class="committee-embed">
-                    {{ member.embed | safe }}
-                </div>
-                {% endif %}
-
-                {% if session.get('admin_logged_in') %}
-                <form action="{{ url_for('delete_committee_member', member_id=member.id) }}" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
-                {% endif %}
-            </div>
-            {% endfor %}
         </div>
+    <h2>Latest Announcements</h2>
+
+    <div class="announcements-list">
+        {% for a in announcements %}
+        <div class="announcement-card">
+            <h3>{{ a.title }}</h3>
+            <p>{{ a.description }}</p>
+
+            {% if a.photo %}
+            <img src="{{ url_for('static', filename='announcements/' ~ a.photo) }}" alt="Announcement Image">
+            {% endif %}
+        </div>
+        {% if session.get('admin_logged_in') %}
+        <form action="{{ url_for('delete_announcement', announcement_id = a.id) }}" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+        {% endif %}
+        {% else %}
+        <p>No announcements have been posted yet.</p>
+        {% endfor %}
     </div>
 </main>
 {% include 'footer.html' %}

@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///committee.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -99,6 +99,7 @@ def delete_committee_member(member_id):
     db.session.commit()
     return redirect(url_for('committee'))
 
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route("/announcements")
 def announcements():
@@ -106,13 +107,8 @@ def announcements():
 
     return render_template("announcements.html", announcements=announce)
 
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-# Temporary storage of committee members
-announcements = []
-
 @app.route("/announcements/add", methods=['POST'])
-def add_committee_member():
+def add_announcements():
     if not session.get('admin_logged_in'):
         return "Unauthorized", 403
 
@@ -125,14 +121,23 @@ def add_committee_member():
         filename = secure_filename(photo_file.filename)
         photo_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    announce = announcements(role=role, name=name, info=info, photo=filename)
+    announce = Announcement(title=title, description=description, photo=filename)
     db.session.add(announce)
     db.session.commit()
 
-    return redirect(url_for('committee'))
+    return redirect(url_for('announcements'))
 
 
+@app.route("/announcement/delete/<int:announcement_id>", methods=['POST'])
+def delete_announcement(announcement_id):
+    if not session.get('admin_logged_in'):
+        return "Unauthorized", 403
 
+    announce = Announcement.query.get_or_404(announcement_id)
+
+    db.session.delete(announce)
+    db.session.commit()
+    return redirect(url_for('announcements'))
 
 
 
