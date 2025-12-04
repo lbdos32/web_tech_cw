@@ -9,18 +9,27 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 
-# SQLite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///committee.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
+
+
+UPLOAD_FOLDER = 'static/announcements'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# Database model
+class Announcement(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    photo = db.Column(db.String(200), nullable=True)
 
 
 # Database model
 class CommitteeMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     embed = db.Column(db.String(1024), nullable=False)
-
 
 # Create the database tables
 with app.app_context():
@@ -78,6 +87,7 @@ def add_committee_member():
 
     return redirect(url_for('committee'))
 
+
 @app.route("/committee/delete/<int:member_id>", methods=['POST'])
 def delete_committee_member(member_id):
     if not session.get('admin_logged_in'):
@@ -88,6 +98,51 @@ def delete_committee_member(member_id):
     db.session.delete(member)
     db.session.commit()
     return redirect(url_for('committee'))
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@app.route("/announcements")
+def announcements():
+    announce = Announcement.query.all()
+
+    return render_template("announcements.html", announcements=announce)
+
+@app.route("/announcements/add", methods=['POST'])
+def add_announcements():
+    if not session.get('admin_logged_in'):
+        return "Unauthorized", 403
+
+    title = request.form['title']
+    description = request.form['description']
+    photo_file = request.files.get('photo')
+    filename = None
+
+    if photo_file and photo_file.filename != '':
+        filename = secure_filename(photo_file.filename)
+        photo_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    announce = Announcement(title=title, description=description, photo=filename)
+    db.session.add(announce)
+    db.session.commit()
+
+    return redirect(url_for('announcements'))
+
+
+@app.route("/announcement/delete/<int:announcement_id>", methods=['POST'])
+def delete_announcement(announcement_id):
+    if not session.get('admin_logged_in'):
+        return "Unauthorized", 403
+
+    announce = Announcement.query.get_or_404(announcement_id)
+
+    db.session.delete(announce)
+    db.session.commit()
+    return redirect(url_for('announcements'))
+
+
+
+
+
 
 # Instagram posting
 

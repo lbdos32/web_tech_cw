@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navBar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/announcements.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU Blue Tits</title>
+</head>
+<body>
+{% include 'navbar.html' %}
+<main>
+    <p>This is the announcements page!</p>
+    <div class="page-content">
+        {% if session.get('admin_logged_in') %}
+        <h2>Add Announcement</h2>
+        <form action="{{ url_for('add_announcements') }}" method="POST" enctype="multipart/form-data">
+            <label for="title">title :</label><br>
+            <input type="text" id="title" name="title" required><br><br>
+
+            <label for="description">description:</label><br>
+            <input type="text" id="description" name="description" required><br><br>
+
+            <label for="photo">Upload Image:</label><br>
+            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+            <button type="submit">Post Announcement</button>
+        </form>
+        {% endif %}
+        </div>
+    <h2>Latest Announcements</h2>
+
+    <div class="announcements-list">
+        {% for a in announcements %}
+        <div class="announcement-card">
+            <h3>{{ a.title }}</h3>
+            <p>{{ a.description }}</p>
+
+            {% if a.photo %}
+            <img src="{{ url_for('static', filename='announcements/' ~ a.photo) }}" alt="Announcement Image">
+            {% endif %}
+        </div>
+        {% if session.get('admin_logged_in') %}
+        <form action="{{ url_for('delete_announcement', announcement_id = a.id) }}" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+        {% endif %}
+        {% else %}
+        <p>No announcements have been posted yet.</p>
+        {% endfor %}
+    </div>
+</main>
+{% include 'footer.html' %}
+</body>
+</html>
