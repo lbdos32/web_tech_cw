@@ -1,6 +1,8 @@
 from flask import Flask, render_template, url_for, jsonify, request, redirect, session
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
+import bcrypt
+from functools import wraps
 import requests
 import time
 import os
@@ -31,14 +33,36 @@ class CommitteeMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     embed = db.Column(db.String(1024), nullable=False)
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(256), unique=True, nullable=False)
+    password_hash = db.Column(db.String(256), nullable=False)
+
+
 # Create the database tables
 with app.app_context():
     db.create_all()
 
 app.secret_key = 'mysecretkey'
 
-ADMIN_USERNAME = 'admin'
+ADMIN_USERNAME = 'eubluetits'
 ADMIN_PASSWORD = 'password123'
+valid_email = ADMIN_USERNAME
+valid_pwhash = bcrypt.hashpw(ADMIN_PASSWORD.encode('utf-8'), bcrypt.gensalt())
+
+def check_auth(email, password):
+    return (
+            email == valid_email and
+            bcrypt.checkpw(password.encode('utf-8'), valid_pwhash)
+    )
+
+def requires_login(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get('logged_in', False):
+            return redirect(url_for('.root'))
+        return f(*args, **kwargs)
+    return decorated
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
