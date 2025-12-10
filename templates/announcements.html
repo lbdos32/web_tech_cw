@@ -12,16 +12,15 @@
 <body>
 {% include 'navbar.html' %}
 <main>
-    <p>This is the announcements page!</p>
     <div class="page-content">
         {% if session.get('admin_logged_in') %}
         <h2>Add Announcement</h2>
         <form action="{{ url_for('add_announcements') }}" method="POST" enctype="multipart/form-data">
-            <label for="title">title :</label><br>
-            <input type="text" id="title" name="title" required><br><br>
+            <label for="title">Title:</label><br>
+            <textarea type="text" id="title" name="title" cols="50" required></textarea><br><br>
 
-            <label for="description">description:</label><br>
-            <input type="text" id="description" name="description" required><br><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="10" cols="50"></textarea><br><br>
 
             <label for="photo">Upload Image:</label><br>
             <input type="file" id="photo" name="photo" accept="image/*"><br><br>
@@ -29,7 +28,6 @@
             <button type="submit">Post Announcement</button>
         </form>
         {% endif %}
-        </div>
     <h2>Latest Announcements</h2>
 
     <div class="announcements-list">
@@ -37,7 +35,6 @@
         <div class="announcement-card">
             <h3>{{ a.title }}</h3>
             <p>{{ a.description }}</p>
-
             {% if a.photo %}
             <img src="{{ url_for('static', filename='announcements/' ~ a.photo) }}" alt="Announcement Image">
             {% endif %}
@@ -50,6 +47,7 @@
         {% else %}
         <p>No announcements have been posted yet.</p>
         {% endfor %}
+    </div>
     </div>
 </main>
 {% include 'footer.html' %}
