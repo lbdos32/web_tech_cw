@@ -34,19 +34,19 @@ body {
 }
 .insta-post {
     display: flex;
-    flex-direction: column; /* stack image on top, caption at bottom */
+    flex-direction: column;
     width: 450px;
     justify-content: center;
     border-radius: 8px;
     overflow: hidden;
     font-family: Arial, sans-serif;
-    margin: 40px auto; /* centers the whole block */
+    margin: 40px auto;
 }
 
 .insta-post img {
     width: 100%;
     display: block;
-    flex-grow: 1; /* image takes available space */
+    flex-grow: 1;
 }
 
 .caption {

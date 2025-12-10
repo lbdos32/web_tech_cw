@@ -1,18 +1,17 @@
-/* Footer styling */
 .site-footer {
-    background-color: #041e42;   /* dark blue for contrast */
+    background-color: #041e42;
     color: white;
     padding: 20px 40px;
     text-align: center;
     font-family: Calibri, sans-serif;
-    position: relative; /* default positioning */
+    position: relative;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
 .site-footer a {
-    color: #ffc107; /* highlight links */
+    color: #ffc107;
     text-decoration: none;
     margin: 0 10px;
 }

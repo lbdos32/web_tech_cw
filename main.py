@@ -10,11 +10,12 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-
+#gets secret key from .env file
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+#db
 
 
 UPLOAD_FOLDER = 'static/announcements'
@@ -40,7 +41,7 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-# --------- admin business --------- #
+# --------- admin --------- #
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
