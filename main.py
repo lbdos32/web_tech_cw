@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, jsonify, request, redirect, session
+from flask import Flask, render_template, url_for, jsonify, request, redirect, session, flash
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
@@ -9,6 +9,7 @@ import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
@@ -20,15 +21,13 @@ UPLOAD_FOLDER = 'static/announcements'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Database model
+# Database models
 class Announcement(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     photo = db.Column(db.String(200), nullable=True)
 
-
-# Database model
 class CommitteeMember(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     embed = db.Column(db.String(1024), nullable=False)
@@ -38,43 +37,29 @@ class User(db.Model):
     email = db.Column(db.String(256), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
 
-
-# Create the database tables
 with app.app_context():
     db.create_all()
 
-app.secret_key = 'mysecretkey'
-
-ADMIN_USERNAME = 'eubluetits'
-ADMIN_PASSWORD = 'password123'
-valid_email = ADMIN_USERNAME
-valid_pwhash = bcrypt.hashpw(ADMIN_PASSWORD.encode('utf-8'), bcrypt.gensalt())
-
-def check_auth(email, password):
-    return (
-            email == valid_email and
-            bcrypt.checkpw(password.encode('utf-8'), valid_pwhash)
-    )
-
-def requires_login(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        if not session.get('logged_in', False):
-            return redirect(url_for('.root'))
-        return f(*args, **kwargs)
-    return decorated
-
+# --------- admin business --------- #
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['username']  # username = email
         password = request.form['password']
-        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-            session['admin_logged_in'] = True
-            return redirect(url_for('committee'))
-        else:
+
+        user = User.query.filter_by(email=email).first()
+
+        if not user:
             error = "Invalid username or password"
             return render_template('login.html', error=error)
+
+        if not bcrypt.checkpw(password.encode('utf-8'), user.password_hash):
+            error = "Invalid username or password"
+            return render_template('login.html', error=error)
+
+        session['admin_logged_in'] = True
+        return redirect(url_for('index'))
+
     return render_template('login.html')
 
 @app.route('/logout')
@@ -82,15 +67,44 @@ def logout():
     session.pop('admin_logged_in', None)
     return redirect(url_for("index"))
 
+@app.route('/ResetPassword', methods=['GET', 'POST'])
+def reset_password():
+    if not session.get('admin_logged_in'):
+        return "Unauthorized", 403
+
+    if request.method == "POST":
+        email = request.form["email"]
+        current_password = request.form["CurrentPassword"]
+        new_password = request.form["password"]
+
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return "User not found", 404
+
+        if not bcrypt.checkpw(current_password.encode('utf-8'), user.password_hash):
+            return "Incorrect current password", 400
+
+        new_password_hash = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+        user.password_hash = new_password_hash
+        db.session.commit()
+
+        return "Password updated successfully!", render_template("login.html")
+
+    return render_template("resetPassword.html")
+
+
+#Homepage/root
 @app.route("/")
 def index():
     post = fetch_latest_instagram_post()
     return render_template("index.html", post=post)
 
+
 @app.route("/healthAndSafety")
 def health_and_safety():
     return render_template('healthAndSafety.html')
 
+# --------- Committee --------- #
 
 @app.route("/committee")
 def committee():
@@ -125,6 +139,7 @@ def delete_committee_member(member_id):
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+# --------- Announcements --------- #
 @app.route("/announcements")
 def announcements():
     announce = Announcement.query.all()
@@ -151,7 +166,6 @@ def add_announcements():
 
     return redirect(url_for('announcements'))
 
-
 @app.route("/announcement/delete/<int:announcement_id>", methods=['POST'])
 def delete_announcement(announcement_id):
     if not session.get('admin_logged_in'):
@@ -164,14 +178,10 @@ def delete_announcement(announcement_id):
     return redirect(url_for('announcements'))
 
 
-
-
-
-
-# Instagram posting
+# --------- Instagram posting --------- #
 
 INSTAGRAM_ACCESS_TOKEN = "IGAAP89WJOTqFBZAFRxaGFKa2d2aWZAMQUxkYVNVRE11ajdhV3N6UEtza1dmM21xd01iUndCRUg2ZAWxkUHVBQXVndF9BczUtWldjSnJaVGZAJaEkyVW15cTZALaldaSjI1RGtMX1BIMmdrZAGhNU1RWUmNFMkZAid0Q3M0NHU2cyZAWotdwZDZD"
-REFRESH_INTERVAL = 500  # seconds
+REFRESH_INTERVAL = 300  # seconds, 5 mins
 
 cached_post = None
 last_fetch_time = 0
@@ -206,6 +216,5 @@ def fetch_latest_instagram_post():
     last_fetch_time = now
 
     return cached_post
-
 
 
